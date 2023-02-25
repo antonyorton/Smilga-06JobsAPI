@@ -1,0 +1,517 @@
+openapi: 3.0.0
+
+info:
+
+  title: Jobs API
+
+  contact: {}
+
+  version: '1.0'
+
+servers:
+
+- url: https://smilga-06jobsapi.onrender.com/api/v1
+
+  variables: {}
+
+paths:
+
+  /auth/register:
+
+    post:
+
+      tags:
+
+      - auth
+
+      summary: Register user
+
+      operationId: Registeruser
+
+      parameters: []
+
+      requestBody:
+
+        description: ''
+
+        content:
+
+          application/json:
+
+            schema:
+
+              allOf:
+
+              - $ref: '#/components/schemas/RegisteruserRequest'
+
+              - example:
+
+                  name: Bob
+
+                  email: a1@b23.net
+
+                  password: bobthebuilder
+
+            example:
+
+              name: Bob
+
+              email: a1@b23.net
+
+              password: bobthebuilder
+
+        required: true
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security: []
+
+  /auth/login:
+
+    post:
+
+      tags:
+
+      - auth
+
+      summary: Login user
+
+      operationId: Loginuser
+
+      parameters: []
+
+      requestBody:
+
+        description: ''
+
+        content:
+
+          application/json:
+
+            schema:
+
+              allOf:
+
+              - $ref: '#/components/schemas/LoginuserRequest'
+
+              - example:
+
+                  email: derryn@tinny.net
+
+                  password: keith23
+
+            example:
+
+              email: derryn@tinny.net
+
+              password: keith23
+
+        required: true
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security: []
+
+  /jobs:
+
+    post:
+
+      tags:
+
+      - jobs
+
+      summary: Create job
+
+      operationId: Createjob
+
+      parameters: []
+
+      requestBody:
+
+        description: ''
+
+        content:
+
+          application/json:
+
+            schema:
+
+              allOf:
+
+              - $ref: '#/components/schemas/CreatejobRequest'
+
+              - example:
+
+                  company: Taxis R us
+
+                  position: Driver
+
+            example:
+
+              company: Taxis R us
+
+              position: Driver
+
+        required: true
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+    get:
+
+      tags:
+
+      - jobs
+
+      summary: Get all jobs
+
+      operationId: Getalljobs
+
+      parameters: []
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+  /jobs/{id}:
+    get:
+      summary: get single job
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: string
+          required: true
+          description: the ID of the job to get
+
+      tags:
+
+      - jobs
+
+      operationId: Getsinglejob
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+  /jobs/{id1}:
+    patch:
+      summary: update job
+      parameters:
+        - in: path
+          name: id1
+          schema:
+            type: string
+          required: true
+          description: the ID of the job to update
+          
+      tags:
+
+      - jobs
+
+      operationId: Updatejob
+
+      requestBody:
+
+        description: ''
+
+        content:
+
+          application/json:
+
+            schema:
+
+              allOf:
+
+              - $ref: '#/components/schemas/UpdatejobRequest'
+
+              - example:
+
+                  company: Geolord3
+
+                  position: gg12
+
+            example:
+
+              company: Geolord3
+
+              position: gg12
+
+        required: true
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+  /jobs/{id2}:
+    delete:
+      summary: delete job
+      parameters:
+        - in: path
+          name: id2
+          schema:
+            type: string
+          required: true
+          description: the ID of the job to delete
+
+      tags:
+
+      - jobs
+
+      operationId: Deletejob
+
+      responses:
+
+        '200':
+
+          description: ''
+
+          headers: {}
+
+      deprecated: false
+
+      security:
+
+      - bearer: []
+
+components:
+
+  schemas:
+
+    RegisteruserRequest:
+
+      title: RegisteruserRequest
+
+      required:
+
+      - name
+
+      - email
+
+      - password
+
+      type: object
+
+      properties:
+
+        name:
+
+          type: string
+
+        email:
+
+          type: string
+
+        password:
+
+          type: string
+
+      example:
+
+        name: Bob
+
+        email: a1@b23.net
+
+        password: bobthebuilder
+
+    LoginuserRequest:
+
+      title: LoginuserRequest
+
+      required:
+
+      - email
+
+      - password
+
+      type: object
+
+      properties:
+
+        email:
+
+          type: string
+
+        password:
+
+          type: string
+
+      example:
+
+        email: derryn@tinny.net
+
+        password: keith23
+
+    CreatejobRequest:
+
+      title: CreatejobRequest
+
+      required:
+
+      - company
+
+      - position
+
+      type: object
+
+      properties:
+
+        company:
+
+          type: string
+
+        position:
+
+          type: string
+
+      example:
+
+        company: Taxis R us
+
+        position: Driver
+
+    UpdatejobRequest:
+
+      title: UpdatejobRequest
+
+      required:
+
+      - company
+
+      - position
+
+      type: object
+
+      properties:
+
+        company:
+
+          type: string
+
+        position:
+
+          type: string
+
+      example:
+
+        company: Geolord3
+
+        position: gg12
+
+    DeletejobRequest:
+
+      title: DeletejobRequest
+
+      required:
+
+      - company
+
+      - position
+
+      - status
+
+      type: object
+
+      properties:
+
+        company:
+
+          type: string
+
+        position:
+
+          type: string
+
+        status:
+
+          type: string
+
+      example:
+
+        company: Geolord2
+
+        position: Hero Head
+
+        status: pending
+
+  securitySchemes:
+
+    bearer:
+
+      type: http
+
+      scheme: bearer
+
+security: []
+
+tags:
+
+- name: Misc
+
+  description: ''
+
+- name: auth
+
+  description: ''
+
+- name: jobs
+
+  description: ''
+

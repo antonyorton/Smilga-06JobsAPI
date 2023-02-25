@@ -11,7 +11,7 @@ const connectdb = async (connectionuri, myDbName) => {
         useUnifiedTopology: true,
       },
     )
-  console.log('running mongodb from docker ..')
+  console.log('running mongodb ..')
   } catch (err) {
     throw err
   }
